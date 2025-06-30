@@ -21,6 +21,8 @@
 
 ```bash
 npx create-react-app@latest 프로젝트명
+
+# 프로젝트 생성시 아래를 추천 (띄워쓰기 . 추천)
 npx create-react-app@latest .
 
 git remote add origin  주소
