@@ -2,18 +2,29 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-// import reportWebVitals from './reportWebVitals';
+import Hide from "./pages/Hide";
+import StartPage from "./pages/StartPage";
+import Header from "./components/Header";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  // js 로 root 에 html react 명령으로 그려라
-  // React.StrictMode 는 개발 메세지 여러번 츌력하라
-  // <React.StrictMode>
-  <App />,
-  // </React.StrictMode>
-);
+// Header 컴포넌트
+// const Header = () => {
+//   return <header className="header">상단</header>;
+// };
+const Hello = function () {
+  return <div>안녕</div>;
+};
+const Dello = function () {
+  return <div>졸려</div>;
+};
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-// reportWebVitals();
+root.render(
+  <>
+    <Header></Header>
+    <div>안녕하세요</div>
+    <Hello></Hello>
+    <Dello></Dello>
+    <Hide></Hide>
+    <StartPage></StartPage>
+  </>,
+);
