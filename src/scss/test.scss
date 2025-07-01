@@ -1,3 +1,24 @@
+// 변수만들기, 확장자 ㄴㄴ
+@import "val";
+@import "color";
+// 함수 사용하기
+@import "mixins";
+
 .wrap {
-    display: flex;
+  position: relative;
+  @include flex-center-center;
+  .notice {
+    @include border-line(5px, #dfdf44);
+    width: $width-800;
+    height: $height-400;
+    a {
+      display: block;
+      &:hover {
+        background-color: $red;
+      }
+      span {
+        display: block;
+      }
+    }
+  }
 }

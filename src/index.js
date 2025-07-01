@@ -20,11 +20,6 @@ const Dello = function () {
 
 root.render(
   <>
-    <Header></Header>
-    <div>안녕하세요</div>
-    <Hello></Hello>
-    <Dello></Dello>
-    <Hide></Hide>
     <StartPage></StartPage>
   </>,
 );
