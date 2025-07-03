@@ -15,6 +15,7 @@ function StartPage() {
     <div className={styles.wrap}>
       <Header></Header>
       <div>안녕하세요</div>
+      <Slide></Slide>
     </div>
   );
 }

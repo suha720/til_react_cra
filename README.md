@@ -589,3 +589,21 @@ function Header() {
 
 export default Header;
 ```
+# CSS-in-JS
+- Styled Component(옛날거임)
+- Emotion(요즘거임)
+
+## 1. 환경설정
+```bash
+# 둘 다 같은말임
+# 한꺼번에 하나 따로따로 하나 차이임
+npm i @emotion/react @emotion/styled
+
+npm i @emotion/react
+npm i @emotion/styled
+```
+
+## 2. 왜 필요한가?
+
+- 태그 처럼 생겼다. (내가 만든 태그)
+- 태그가 내용을 설명하도록 구성한다.
