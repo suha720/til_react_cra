@@ -1,0 +1,263 @@
+.cat {
+  width: 500px;
+  height: 500px;
+  margin: 20px auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.ear.left1 {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background-color: rgb(255, 225, 58);
+  top: 40px;
+  left: 130px;
+  transform: rotate(30deg) skewX(30deg);
+  transition: transform 0.3s;
+}
+
+.ear.left2 {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background-color: rgb(255, 148, 166);
+  top: 40px;
+  left: 130px;
+  transform: rotate(30deg) skewX(30deg) scale(0.7);
+  transition: transform 0.3s;
+}
+
+.ear.right1 {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background-color: rgb(255, 225, 58);
+  top: 40px;
+  right: 130px;
+  transform: rotate(-30deg) skewX(-30deg);
+  transition: transform 0.3s;
+}
+
+.ear.right2 {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background-color: rgb(255, 148, 166);
+  top: 40px;
+  right: 130px;
+  transform: rotate(-30deg) skewX(-30deg) scale(0.7);
+  transition: transform 0.3s;
+}
+
+.cat:hover .ear.left1 {
+  transform: rotate(40deg) skewX(30deg);
+}
+
+.cat:hover .ear.left2 {
+  transform: rotate(40deg) skewX(30deg) scale(0.7);
+}
+
+.cat:hover .ear.right1 {
+  transform: rotate(-40deg) skewX(-30deg);
+}
+
+.cat:hover .ear.right2 {
+  transform: rotate(-40deg) skewX(-30deg) scale(0.7);
+}
+
+.head {
+  position: absolute;
+  width: 270px;
+  height: 200px;
+  border-radius: 150px;
+  top: 45px;
+  left: 50%;
+  background-color: rgb(255, 225, 58);
+  transform: translateX(-50%);
+}
+
+.eye.left {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: black;
+  left: 37%;
+  top: 100px;
+  transform: scaleY(1.2);
+  transition: transform 0.3s;
+}
+
+.eye.right {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: black;
+  right: 37%;
+  top: 100px;
+  transform: scaleY(1.2);
+  transition: transform 0.3s;
+}
+
+.cat:hover .eye.left {
+  transform: scale(1.2, 0.3);
+}
+
+.cat:hover .eye.right {
+  transform: scale(1.2, 0.3);
+}
+
+.nose {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 20px solid rgb(255, 148, 166);
+  border-bottom: 20px solid transparent;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  top: 122px;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.mouth.left {
+  position: absolute;
+  width: 5px;
+  height: 20px;
+  background-color: rgb(255, 148, 166);
+  top: 140px;
+  left: 235px;
+  transform: skewX(-50deg);
+}
+
+.mouth.right {
+  position: absolute;
+  width: 5px;
+  height: 20px;
+  background-color: rgb(255, 148, 166);
+  top: 140px;
+  right: 235px;
+  transform: skewX(50deg);
+}
+
+.whisker.left1 {
+  position: absolute;
+  width: 3px;
+  height: 60px;
+  top: 110px;
+  left: 120px;
+  background-color: black;
+  transform: rotate(-70deg);
+  transition: transform 0.3s;
+}
+
+.whisker.left2 {
+  position: absolute;
+  width: 3px;
+  height: 60px;
+  top: 140px;
+  left: 120px;
+  background-color: black;
+  transform: rotate(-110deg);
+  transition: transform 0.3s;
+}
+
+.whisker.right1 {
+  position: absolute;
+  width: 3px;
+  height: 60px;
+  top: 110px;
+  right: 120px;
+  background-color: black;
+  transform: rotate(70deg);
+  transition: transform 0.3s;
+}
+
+.whisker.right2 {
+  position: absolute;
+  width: 3px;
+  height: 60px;
+  top: 140px;
+  right: 120px;
+  background-color: black;
+  transform: rotate(110deg);
+  transition: transform 0.3s;
+}
+
+.cat:hover .whisker.left1 {
+  transform: rotate(-80deg) translateX(-5px);
+}
+
+.cat:hover .whisker.left2 {
+  transform: rotate(-100deg) translateX(5px);
+}
+
+.cat:hover .whisker.right1 {
+  transform: rotate(80deg) translateX(5px);
+}
+
+.cat:hover .whisker.right2 {
+  transform: rotate(100deg) translateX(-5px);
+}
+
+.tail {
+  position: absolute;
+  width: 150px;
+  height: 30px;
+  background-color: rgb(255, 225, 58);
+  border-radius: 50px;
+  right: 0;
+  bottom: 120px;
+  transform: rotate(-40deg);
+  transition: transform 0.3s;
+}
+
+.cat:hover .tail {
+  transform: rotate(-30deg) translateY(-5px);
+}
+
+.body {
+  position: absolute;
+  width: 330px;
+  height: 400px;
+  bottom: -50px;
+  left: 50%;
+  border-radius: 50%;
+  background-color: rgb(255, 225, 58);
+  transform: translateX(-50%);
+}
+
+.belly {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  bottom: 20px;
+  left: 50%;
+  border-radius: 50%;
+  background-color: white;
+  transform: translateX(-50%) scaleY(1.3);
+}
+
+.foot.left {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  left: 130px;
+  bottom: 0;
+  border: rgb(255, 225, 58) solid 2px;
+  border-radius: 50px 50px 0 0;
+  background-color: white;
+}
+
+.foot.right {
+  position: absolute;
+  width: 100px;
+  height: 50px;
+  right: 130px;
+  bottom: 0;
+  border: rgb(255, 225, 58) solid 2px;
+  border-radius: 50px 50px 0 0;
+  background-color: white;
+}

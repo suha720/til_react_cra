@@ -6,6 +6,7 @@ function Slide() {
   // Emotion 관련
   // 기본형
   const BasicButton = styled.button``;
+
   // css 추가형
   const BasicUpButton = styled.button`
     background-color: hotpink;
@@ -26,12 +27,13 @@ function Slide() {
   // props 로 동적인 즉, 실시간 스타일 변경하기
   const Box = styled.div`
     background-color: ${props => props.bg};
-    width: 100px;
+    width: ${props => props.width};
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 0;
+    margin: ${props => props.m}px 0;
+    border: ${props => props.b}px solid ${props => props.cc};
   `;
 
   // jsx 자리
@@ -44,10 +46,13 @@ function Slide() {
       <BasicUpButton>CSS적용버튼</BasicUpButton>
       <br />
       <br />
-      <Box bg="red" width="200px">
+      <Box bg="red" width="200px" b="5" cc="orange" m="50">
         첫번째 박스
       </Box>
-      <Box bg="skyblue">두번째 박스</Box>
+
+      <Box bg="skyblue" b="20" cc="green">
+        두번째 박스
+      </Box>
     </div>
   );
 }
