@@ -1039,45 +1039,51 @@ function Toast({ message = "Please Message", bg = "#ccc" }) {
 export default Toast;
 ```
 
-```jsx
+- Alert 샘플
+
+```js
 import styled from "@emotion/styled";
 import React from "react";
 
-function Alert({ children, type }) {
-  // js
+function Alert({ children, type = "default" }) {
+  // js 자리
   const StyledAlert = styled.div`
     background-color: ${props => {
       switch (props.type) {
         case "success":
-          return "#5195ee";
+          return "#d4edda";
         case "error":
-          return "#e46e80";
+          return "#f8d7da";
         case "warning":
-          return "#e5e5e5";
+          return "#fff3cd";
+        case "info":
+          return "#d1ecf1";
         default:
-          return "#fff";
+          return "#e2e3e5";
       }
     }};
 
     color: ${props => {
       switch (props.type) {
         case "success":
-          return "#e46e80";
+          return "#155724";
         case "error":
-          return "#e5e5e5";
+          return "#721c24";
         case "warning":
-          return "#e46e80";
+          return "#856404";
+        case "info":
+          return "#0c5460";
         default:
-          return "#5195ee";
+          return "#383d41";
       }
     }};
     padding: 12px 16px;
     border-radius: 4px;
-    margin-right: 10px 0;
+    margin: 10px 0;
     border: 1px solid transparent;
   `;
-  //jsx
 
+  // jsx 자리
   return <StyledAlert type={type}>{children}</StyledAlert>;
 }
 
@@ -1086,7 +1092,7 @@ export default Alert;
 
 - Chip 예제
 
-```jsx
+```js
 import styled from "@emotion/styled";
 import React from "react";
 
@@ -1124,7 +1130,80 @@ function Chip({ label = "Label" }) {
 export default Chip;
 ```
 
-- https://cssgradient.io/
+- Modal 예제
+
+```js
+import styled from "@emotion/styled";
+import React from "react";
+
+function Modal({ children }) {
+  // js 자리
+  const Overlay = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  `;
+
+  const ModalBox = styled.div`
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    min-width: 400px;
+    min-height: 200px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+  `;
+  // jsx 자리
+  return (
+    <Overlay>
+      <ModalBox>{children}</ModalBox>
+    </Overlay>
+  );
+}
+
+export default Modal;
+```
+
+- ProgressBar 예제
+
+```jsx
+import styled from "@emotion/styled";
+import React from "react";
+
+function ProgressBar({ percent = 0, color = "#000" }) {
+  // js 자리
+  const BarWrapper = styled.div`
+    background-color: #eee;
+    height: 16px;
+    width: 100%;
+    border-radius: 8px;
+    margin: 10px 0;
+    overflow: hidden;
+  `;
+  const BarInner = styled.div`
+    height: 100%;
+    background-color: ${props => props.color};
+    width: ${props => props.percent}%;
+    transition: all 0.5s;
+  `;
+  // jsx 자리
+  return (
+    <BarWrapper>
+      <BarInner percent={percent} color={color} />
+    </BarWrapper>
+  );
+}
+
+export default ProgressBar;
+```
+
+- Skeleton 예제 : https://cssgradient.io/
 
 ```jsx
 import { keyframes } from "@emotion/react";
@@ -1132,34 +1211,31 @@ import styled from "@emotion/styled";
 import React from "react";
 
 function Skeleton({ width = "100%", height = "20px" }) {
+  // js 코딩자리
   // keyframes css 애니메이션
   const mov = keyframes`
-  0% {background-position: -400px 0}
-  100% {background-position: 400px 0}
+    0% { background-position: -400px 0}
+    100% { background-position: 400px 0}
   `;
 
   const SkeletonBox = styled.div`
-    margin-bottom: 16px;
     width: ${props => props.width};
     height: ${props => props.height};
     border-radius: 4px;
-    background: linear-gradient(
-      90deg,
-      rgba(42, 123, 155, 1) 45%,
-      rgba(87, 199, 133, 1) 69%,
-      rgba(130, 205, 119, 1) 84%,
-      rgba(237, 221, 83, 1) 100%
-    );
+    background: linear-gradient(90deg, #eeeeee 25%, #dddddd 37%, #eeeeee 63%);
     background-size: 800px 100%;
-
     animation: ${mov} 1.2s infinite linear;
+    margin: 10px 0;
   `;
 
+  // jsx 코딩자리
   return <SkeletonBox width={width} height={height} />;
 }
 
 export default Skeleton;
 ```
+
+- Tooltip 예제
 
 ```jsx
 import styled from "@emotion/styled";
@@ -1202,15 +1278,6 @@ function Tooltip({ children, text }) {
 }
 
 export default Tooltip;
-```
-
-# useState
-
-- 리액트에서 변수를 만드는 법
-- `변수의 값이 변하면 웹브라우저의 화면도 변한다.`
-
-```jsx
-const [변수명, set변수명] = useState(초기값);
 ```
 
 # JSX 의 조건문
@@ -1269,14 +1336,14 @@ isLogin && <div>결과</div>;
 
 ```js
 const user = { age: 10, job: "개발자" };
-const res = user?.age;
+const result = user?.age;
 ```
 
 - Null 병합 연산자(`??`) : null 또는 undefined 일때만 기본값 사용
 
 ```js
 const user = { age: 10, job: "개발자" };
-const res = user.gogo ?? "없음";
+const result = user.gogo ?? "없어요";
 ```
 
 - switch
@@ -1292,87 +1359,81 @@ switch(결과값){
 }
 ```
 
-## 2. JSX 에서 활용
+## 2. JSX 에서의 활용
 
-- JSX 에서는 `JS 자리` if 문과 switch 문을 사용할 수 있습니다.
+- `JS 자리`에 if 문과 switch 문을 사용할 수 있음.
 
-- JSX 에서는 `JSX 자리` if 문과 switch 문을 사용할 수 없습니다.
-- if 문과 switch 문 대신에 `3항 연산자`가 가장 많이 사용됨.
-- JSX 에서는 `JSX 자리` falshy 한 값은 출력이 안됩니다.
+- `JSX 자리`에 if 문과 switch 문을 사용할 수 없음.
+- if 문과 switch 문 대신에 `3 항 연산자`가 가장 많이 사용됨.
+- `JSX 자리`에 falshy 한 값은 출력이 안됩니다.
 
 ### 2.1. if 문 활용
 
-```js
+```jsx
 import React from "react";
 
-// 파일로 만들지 않은 컴포넌트
-function Hi({ children, bb }) {
+// 파일로 만들지 않은  컴포넌트
+function Hi({ isLogin }) {
   // js 자리
-  if (bb) {
-    return <div>반갑네용</div>;
+  if (isLogin) {
+    return <div>반가워요</div>;
   }
-
   // jsx 자리
-  return <div>하이하이 + {children}</div>;
+  return <div>안녕</div>;
 }
 
 function Test() {
   // js 자리
-
   // jsx 자리
-  return <Hi bb={true}>Test</Hi>;
+  return <Hi isLogin={true}>Test</Hi>;
 }
 
 export default Test;
 ```
 
-### 2.2 jsx 에서 3항 연산자
+### 2.2. jsx 에서 3항 연산자
 
 ```jsx
 import React from "react";
 
-// 파일로 만들지 않은 컴포넌트
-function Hi({ children, bb }) {
+// 파일로 만들지 않은  컴포넌트
+function Hi({ isLogin }) {
   // js 자리
-
   // jsx 자리
-  return <div>{bb ? "반가워" : "저런"}</div>;
+  return <div>{isLogin ? "반가워요" : "로그인하세요."}</div>;
 }
 
 function Test() {
   // js 자리
-
   // jsx 자리
-  return <Hi bb={true}>Test</Hi>;
+  return <Hi isLogin={true}>Test</Hi>;
 }
 
 export default Test;
 ```
 
-### 2.3. JSX 에서 && 활용
+### 2.3. jsx 에서 && 연산자 활용
 
 ```jsx
 import React from "react";
 
-// 파일로 만들지 않은 컴포넌트
-function Hi({ children, bb, msg }) {
+// 파일로 만들지 않은  컴포넌트
+function Hi({ isLogin, msg }) {
   // js 자리
-
   // jsx 자리
   return (
     <div>
-      {bb ? "반가워" : "저런"}
-      <div>{msg && "메시지가 있음"}</div>
+      {isLogin ? "반가워요" : "로그인하세요."}
+      <div>{msg && "메시지가 있습니다."}</div>
     </div>
   );
 }
 
 function Test() {
   // js 자리
-
   // jsx 자리
   return (
-    <Hi bb={true} msg="ㅋㅋ">
+    <Hi isLogin={true} msg={"새로운메시지"}>
       Test
     </Hi>
   );
@@ -1381,29 +1442,28 @@ function Test() {
 export default Test;
 ```
 
-### 2.4. JSX 에서 ?. 연산자 활용
+### 2.4. jsx 에서 ?. 연산자 활용
 
 - `객체?.속성명`
 - 객체가 null 이거나 undefined 이면 리액트 오류
 - 복잡한 if 문 대신 옵셔널 체이닝을 활용함.
 
-- `?.` `삼항 연산자` `논리 연산자`
-
 ```jsx
 import React from "react";
 
-// 파일로 만들지 않은 컴포넌트
-function Hi({ children, bb, msg, user }) {
+// 파일로 만들지 않은  컴포넌트
+function Hi({ isLogin, msg, user }) {
   // js 자리
-
   // jsx 자리
   return (
     <div>
-      {bb ? "반가워" : "저런"}
-      <div>{msg && "메시지가 있음"}</div>
+      {isLogin ? "반가워요" : "로그인하세요."}
+      <div>{msg && "메시지가 있습니다."}</div>
       <div>
-        {user?.name} : {user?.age ? user?.age : "삼항 연산자입니다"} <br />
-        {user?.name} : {user?.age || "논리 연산자입니다"} <br />
+        {user?.name} : {user?.age ? user?.age : "나이가없어요"}
+      </div>
+      <div>
+        {user?.name} : {user?.age || "나이가 없어요"}
       </div>
     </div>
   );
@@ -1411,10 +1471,9 @@ function Hi({ children, bb, msg, user }) {
 
 function Test() {
   // js 자리
-
   // jsx 자리
   return (
-    <Hi bb={true} msg="ㅋㅋ" user={{ name: "kity" }}>
+    <Hi isLogin={true} msg={"새로운메시지"} user={{ name: "홍길동" }}>
       Test
     </Hi>
   );
@@ -1430,7 +1489,38 @@ export default Test;
 - 일반적으로 가장 많이 사용함.
 - 컴포넌트 또는 html 태그를 반복 출력시 활용
 - 반드시 대상은 `배열`입니다.
-- 반드시 `key 속성 즉, props 가 있어야 함`
+- 반드시 `key 속성 즉, props 가 있어야 함.`
+
+```jsx
+import React, { useState } from "react";
+
+// 파일로 만들지 않은  컴포넌트
+function Hi({ data }) {
+  // js 자리
+  // jsx 자리
+  return <div>{data?.name}님 안녕</div>;
+}
+
+function Test() {
+  // js 자리
+  const [userData, setUserData] = useState([
+    { name: "hong", age: 10 },
+    { name: "park", age: 15 },
+    { name: "son", age: 18 },
+    { name: "kim", age: 25 },
+  ]);
+  // jsx 자리
+  return (
+    <div>
+      {userData.map(function (item, index) {
+        return <Hi key={index} data={item}></Hi>;
+      })}
+    </div>
+  );
+}
+
+export default Test;
+```
 
 ## 2. filter 의 이해
 
