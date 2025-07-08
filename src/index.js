@@ -12,6 +12,7 @@ import Todos from "./pages/Todos";
 import Users from "./pages/Users";
 import Comments from "./pages/Comments";
 import Test from "./pages/Test";
+import Foods from "./pages/Foods";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 // Header 컴포넌트
