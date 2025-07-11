@@ -1,41 +1,45 @@
 import styled from "@emotion/styled";
 import React from "react";
 
-function Alert({ children, type }) {
-  // js
+function Alert({ children, type = "default" }) {
+  // js 자리
   const StyledAlert = styled.div`
     background-color: ${props => {
       switch (props.type) {
         case "success":
-          return "#5195ee";
+          return "#d4edda";
         case "error":
-          return "#e46e80";
+          return "#f8d7da";
         case "warning":
-          return "#e5e5e5";
+          return "#fff3cd";
+        case "info":
+          return "#d1ecf1";
         default:
-          return "#fff";
+          return "#e2e3e5";
       }
     }};
 
     color: ${props => {
       switch (props.type) {
         case "success":
-          return "#e46e80";
+          return "#155724";
         case "error":
-          return "#e5e5e5";
+          return "#721c24";
         case "warning":
-          return "#e46e80";
+          return "#856404";
+        case "info":
+          return "#0c5460";
         default:
-          return "#5195ee";
+          return "#383d41";
       }
     }};
     padding: 12px 16px;
     border-radius: 4px;
-    margin-right: 10px 0;
+    margin: 10px 0;
     border: 1px solid transparent;
   `;
-  //jsx
 
+  // jsx 자리
   return <StyledAlert type={type}>{children}</StyledAlert>;
 }
 

@@ -5,7 +5,10 @@
   align-items: center;
 }
 .wrap .notice {
-  border: 5px solide #dfdf44;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 50px solide #ff0000;
   width: 800px;
   height: 400px;
 }

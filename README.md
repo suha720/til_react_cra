@@ -761,7 +761,6 @@ function LoginForm({ formData, errorMessage, handleChange, handleSubmit }) {
 
 export default LoginForm;
 ```
-
 ```jsx
 // InputField.jsx
 import styled from "@emotion/styled";
@@ -816,4 +815,5 @@ function InputField({ label, type, name, id, value, placeholder, onChange }) {
 }
 
 export default InputField;
+
 ```
