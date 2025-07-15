@@ -8,6 +8,8 @@ import Albums from "./pages/Albums";
 import Test from "./pages/Test";
 import RegisterPage from "./pages/RegisterPage";
 import Todo from "./pages/Todo";
+import Sidebar from "./components/emotion/Sidebar";
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -15,6 +17,8 @@ root.render(
   <div className="wrap">
     {/* <RegisterPage></RegisterPage> */}
     {/* <Test></Test> */}
-    <Todo></Todo>
+    {/* <Todo></Todo> */}
+    <App></App>
+    {/* <Sidebar></Sidebar> */}
   </div>,
 );
