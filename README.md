@@ -624,12 +624,16 @@ export default Layout;
 - 클릭해서 이동하지 않고 js 코드로 라우터 이동
 
 ```jsx
-import {useNavigate} from "react-router-dom:
-//  js 자리
-const navugate = useNavigate();
-//  이동코드
-navigate("/라우터경로")
-navigate(-1)
+import { useNavigate } from "react-router-dom";
+
+// js 자리
+const navigate = useNavigate();
+
+// 이동코드
+navigate("/라우터경로");
+
+// 이전화면
+navigate(-1);
 ```
 
 ## 7.10. Path 및 Params `실시간 생성하기`
@@ -638,7 +642,7 @@ navigate(-1)
 
 ```jsx
 const path = "/";
-const url = `/${변수}`;
+const uri = `/${변수}`;
 ```
 
 ```jsx
@@ -651,72 +655,38 @@ const path = `/todo/${변수}`;
 - SearchParams 를 만들어주는 문법
 
 ```jsx
-const path = `/service?age=${변수}&name=${변수}`;
+const user = {
+  name: "iu",
+  age: 28,
+  id: 100,
+};
+const queryStr = createSearchParams({ ...user }).toString();
+console.log(queryStr);
+// name=iu&age=28&id=100
 ```
 
-```jsx
-import React, { useEffect } from "react";
-import {
-  createSearchParams,
-  Link,
-  Outlet,
-  useNavigate,
-} from "react-router-dom";
-import { Button } from "../todo/Todo.style";
-
-function Layout() {
-  // js
-  const navigate = useNavigate();
-  const handleClickHome = () => {
-    navigate("/");
-  };
-
-  useEffect(() => {
-    const user = {
-      name: "iu",
-      age: 28,
-      id: 100,
-    };
-    const queryStr = createSearchParams({ ...user }).toString();
-    console.log(queryStr);
-  }, []);
-
-  // jsx
-  return (
-    <div>
-      <div>로컬메뉴</div>
-      <div>
-        <div>
-          <Button onClick={handleClickHome}>홈</Button>
-          <Link to="/company">회사소개</Link>
-          <br />
-          <Link to="/company/list">제품소개</Link>
-          <br />
-          <Link to="/company/location">회사위치 소개</Link>
-        </div>
-        <h2>Outlet 자리</h2>
-        <div style={{ background: "cyan", minHeight: 100 }}>
-          <Outlet></Outlet>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default Layout;
-```
-
-- 현재 path 알아보기
+- 현재 path 알아내기
 
 ```jsx
 import { useLocation } from "react-router-dom";
 
-const { pathname, search, state } = useLoaderData;
-console.log(pathname); // ;\companny/List
-console.log(search);
-console.log(state); // null
+// js 자리
+const { pathname, search, state } = useLocation();
+console.log(pathname); //    /company/list
+console.log(search); //      ?age=1
+console.log(state); //       null
 ```
 
 ## 7.11. 사용자 모르게 데이터를 라우터로 전달하기
 
-- params 나 쿼리스트링은 사용자에게 보여집니다.
+- params 나 QueryString 은 사용자에게 보여집니다.
+
+```jsx
+const path = "/";
+const 숨긴정보 = {
+  memo: "회사소개에서 왔어요",
+  good: "제품도 봤어요",
+  favorite: "이사람 제품1에 관심있네요?",
+};
+navigate({ pathname: path, search: "?hi=100" }, { state: { 숨긴정보 } });
+```

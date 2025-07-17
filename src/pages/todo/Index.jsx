@@ -11,6 +11,7 @@ import CompanyLocation from "../company/CompanyLocation";
 
 function Index() {
   // js 자리
+
   // 전체 목록
   const [todoList, setTodoList] = useState([]);
 
@@ -108,15 +109,12 @@ function Index() {
               />
             }
           />
+
           {/* 회사소개 */}
           <Route path="/company" element={<Layout />}>
-            {/*  */}
-            <Route index element={<CompanyDetail></CompanyDetail>}></Route>
-            <Route path="list" element={<CompanyList></CompanyList>}></Route>
-            <Route
-              path="location"
-              element={<CompanyLocation></CompanyLocation>}
-            ></Route>
+            <Route index element={<CompanyDetail />} />
+            <Route path="list" element={<CompanyList />} />
+            <Route path="location" element={<CompanyLocation />} />
           </Route>
         </Routes>
       </Router>
