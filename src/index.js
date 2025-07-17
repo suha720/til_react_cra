@@ -21,9 +21,9 @@ root.render(
   <div className="wrap">
     {/* <RegisterPage></RegisterPage> */}
     {/* <Test></Test> */}
-    {/* <Index /> */}
+    <Index />
     {/* <App></App> */}
     {/* <Sidebar></Sidebar> */}
-    <TestApi></TestApi>
+    {/* <TestApi></TestApi> */}
   </div>,
 );

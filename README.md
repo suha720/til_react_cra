@@ -565,8 +565,9 @@ export default Header;
 ```
 
 - useState 로 children 변경 예제
+
 ```jsx
- const [isLogin, setIsLogin] = useState(false);
+const [isLogin, setIsLogin] = useState(false);
 ```
 
 ```jsx
@@ -576,3 +577,146 @@ export default Header;
 ```
 
 ## 7.8. 레이아웃을 유지하고 Outlet 에 출력하기
+
+- Route 는 오로지 컴포넌트 이동 후 출력만 담당
+- Route 는 레이아웃 역할을 하지 못합니다.
+- Route 를 레이아웃 용도로 활용하겠다는 것
+
+```jsx
+// Route 에 코드 구성
+<Route path="/company" element={<Layout />}>
+  <Route index element={<CompanyDetail />} />
+  <Route path="list" element={<CompanyList />} />
+  <Route path="location" element={<CompanyLocation />} />
+</Route>
+```
+
+```jsx
+// Layout 에 Outlet 지정해서 내용 컴포넌트 출력
+import React from "react";
+import { Link, Outlet } from "react-router-dom";
+
+function Layout() {
+  return (
+    <div>
+      <div>
+        <Link to="/company">회사 소개</Link>
+        <br />
+        <Link to="/company/list">제품 소개</Link>
+        <br />
+        <Link to="/company/location">회사위치 소개</Link>
+      </div>
+      <div>
+        <h2>Outlet 자리</h2>
+        <div style={{ background: "yellow", minHeight: 100 }}>
+          <Outlet />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Layout;
+```
+
+## 7.9. Link 말고 js 코드로 이동하기
+
+- 클릭해서 이동하지 않고 js 코드로 라우터 이동
+
+```jsx
+import {useNavigate} from "react-router-dom:
+//  js 자리
+const navugate = useNavigate();
+//  이동코드
+navigate("/라우터경로")
+navigate(-1)
+```
+
+## 7.10. Path 및 Params `실시간 생성하기`
+
+- 문자열 또는 백틱으로 생성하는 것이 일반적
+
+```jsx
+const path = "/";
+const url = `/${변수}`;
+```
+
+```jsx
+// 쿼리스트링 예제
+const path = `/service?age=${변수}&name=${변수}`;
+// params 예제
+const path = `/todo/${변수}`;
+```
+
+- SearchParams 를 만들어주는 문법
+
+```jsx
+const path = `/service?age=${변수}&name=${변수}`;
+```
+
+```jsx
+import React, { useEffect } from "react";
+import {
+  createSearchParams,
+  Link,
+  Outlet,
+  useNavigate,
+} from "react-router-dom";
+import { Button } from "../todo/Todo.style";
+
+function Layout() {
+  // js
+  const navigate = useNavigate();
+  const handleClickHome = () => {
+    navigate("/");
+  };
+
+  useEffect(() => {
+    const user = {
+      name: "iu",
+      age: 28,
+      id: 100,
+    };
+    const queryStr = createSearchParams({ ...user }).toString();
+    console.log(queryStr);
+  }, []);
+
+  // jsx
+  return (
+    <div>
+      <div>로컬메뉴</div>
+      <div>
+        <div>
+          <Button onClick={handleClickHome}>홈</Button>
+          <Link to="/company">회사소개</Link>
+          <br />
+          <Link to="/company/list">제품소개</Link>
+          <br />
+          <Link to="/company/location">회사위치 소개</Link>
+        </div>
+        <h2>Outlet 자리</h2>
+        <div style={{ background: "cyan", minHeight: 100 }}>
+          <Outlet></Outlet>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Layout;
+```
+
+- 현재 path 알아보기
+
+```jsx
+import { useLocation } from "react-router-dom";
+
+const { pathname, search, state } = useLoaderData;
+console.log(pathname); // ;\companny/List
+console.log(search);
+console.log(state); // null
+```
+
+## 7.11. 사용자 모르게 데이터를 라우터로 전달하기
+
+- params 나 쿼리스트링은 사용자에게 보여집니다.
