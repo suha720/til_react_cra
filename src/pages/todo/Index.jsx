@@ -1,3 +1,4 @@
+import kiki from "../../assets/logo192.png";
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import LoadingDiv from "../../components/ui/LoadingDiv";
@@ -104,6 +105,10 @@ function Index() {
   // jsx 자리
   return (
     <div className="wrap">
+      <img src="/logo192.png" alt="로고" />
+      <img src={`${process.env.PUBLIC_URL}/logo192.png`} alt="로고" />{" "}
+      <h2>/src/assets 폴더에 있는 파일 가져오기</h2>
+      <img src={kiki} alt="로고" />
       <Router>
         <Routes>
           <Route
