@@ -76,7 +76,6 @@ export const TextArea = styled.textarea`
   font-size: 12px;
   border: 1px solid #ccc;
   border-radius: 8px;
-  /* 수직만 변하게함, 수평은 그대로임 이 코드 안쓰면 수직/수평 둘다 변함 */
   resize: vertical;
 `;
 

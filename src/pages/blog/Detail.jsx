@@ -8,7 +8,7 @@ function Detail() {
   const user = searchParams.get("user");
   return (
     <div>
-      블로그 상세 정보 {id} : {user} 내용 Detail
+      블로그 상세 정보 {id} {user} 내용 Detail
     </div>
   );
 }

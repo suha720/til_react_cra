@@ -1,10 +1,14 @@
-import kiki from "../../assets/logo192.png";
+import 이름 from "../../assets/logo192.png";
+
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import LoadingDiv from "../../components/ui/LoadingDiv";
 
+// 제거해야 할 기능
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 // import Todo from "./Todo";
-// const TodoPage = lazy(() => import("./Todo"));
+// const TodoPage = lazy(   () => import("./Todo")    );
+const TodoPage = lazy(() => sleep(1000).then(() => import("./Todo")));
 
 // import TodoAdd from "./TodoAdd";
 const TodoAdd = lazy(() => import("./TodoAdd"));
@@ -26,13 +30,6 @@ const CompanyList = lazy(() => import("../company/CompanyList"));
 
 // import CompanyLocation from "../company/CompanyLocation";
 const CompanyLocation = lazy(() => import("../company/CompanyLocation"));
-
-// start : 제거해야할 코드 기능
-const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-// import Todo from "./Todo";
-// const TodoPage = lazy(   () => import("./Todo")    );
-const TodoPage = lazy(() => sleep(1000).then(() => import("./Todo")));
-// end : 제거해야할 코드 기능
 
 function Index() {
   // js 자리
@@ -106,9 +103,9 @@ function Index() {
   return (
     <div className="wrap">
       <img src="/logo192.png" alt="로고" />
-      <img src={`${process.env.PUBLIC_URL}/logo192.png`} alt="로고" />{" "}
-      <h2>/src/assets 폴더에 있는 파일 가져오기</h2>
-      <img src={kiki} alt="로고" />
+      <img src={`${process.env.PUBLIC_URL}/logo192.png`} alt="로고" />
+      <h2>/src/assets 폴더 이미지 활용</h2>
+      <img src={이름} alt="로고" />
       <Router>
         <Routes>
           <Route
@@ -116,10 +113,7 @@ function Index() {
             // element={<Todo todoList={todoList} handleDelete={handleDelete} />}
             element={
               <Suspense fallback={<LoadingDiv />}>
-                <TodoPage
-                  todoList={todoList}
-                  handleDelete={handleDelete}
-                ></TodoPage>
+                <TodoPage todoList={todoList} handleDelete={handleDelete} />
               </Suspense>
             }
           />
@@ -137,6 +131,7 @@ function Index() {
           />
           <Route
             path="/detail/:id"
+            // element={<TodoDetail todoList={todoList} />}
             element={
               <Suspense fallback={<LoadingDiv />}>
                 <TodoDetail todoList={todoList} />
@@ -145,6 +140,12 @@ function Index() {
           />
           <Route
             path="/edit"
+            // element={
+            //   <TodoEdit
+            //     todoList={todoList}
+            //     handleEditSubmit={handleEditSubmit}
+            //   />
+            // }
             element={
               <Suspense fallback={<LoadingDiv />}>
                 <TodoEdit
@@ -158,6 +159,7 @@ function Index() {
           {/* 회사소개 */}
           <Route
             path="/company"
+            // element={<Layout />}
             element={
               <Suspense fallback={<LoadingDiv />}>
                 <Layout />
@@ -166,6 +168,7 @@ function Index() {
           >
             <Route
               index
+              // element={<CompanyDetail />}
               element={
                 <Suspense fallback={<LoadingDiv />}>
                   <CompanyDetail />
@@ -174,6 +177,7 @@ function Index() {
             />
             <Route
               path="list"
+              // element={<CompanyList />}
               element={
                 <Suspense fallback={<LoadingDiv />}>
                   <CompanyList />
@@ -182,6 +186,7 @@ function Index() {
             />
             <Route
               path="location"
+              // element={<CompanyLocation />}
               element={
                 <Suspense fallback={<LoadingDiv />}>
                   <CompanyLocation />

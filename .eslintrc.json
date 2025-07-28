@@ -20,8 +20,5 @@
     "no-unused-vars": "off",
     "react/prop-types": "off",
     "no-undef": "warn"
-  },
-  "globals": {
-    "process": "readonly"
   }
 }

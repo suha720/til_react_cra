@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import Child from "./Child";
 
 function App() {
@@ -12,14 +12,9 @@ function App() {
     <div>
       <h2>Count: {count}</h2>
       <button onClick={() => setCount(count + 1)}>함수 실행</button>
-      <Child></Child>
-      <Child></Child>
-      <Child></Child>
-      <Child></Child>
-      <Child></Child>
-      <Child></Child>
+      <Child />
     </div>
   );
 }
 
-export default memo(App);
+export default App;

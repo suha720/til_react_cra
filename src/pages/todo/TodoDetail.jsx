@@ -16,6 +16,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 function TodoDetail({ todoList }) {
   // js 자리
   const navigate = useNavigate();
+
   // useParams 로 전달 받은 자료는 무조건 문자열입니다.
   const { id } = useParams();
   // 화면에 보여줄 데이터
@@ -57,7 +58,12 @@ function TodoDetail({ todoList }) {
           </InputWrap>
           <InputWrap>
             <Label>내용</Label>
-            <TextArea value={data.content} name="content" rows={4} />
+            <TextArea
+              value={data.content}
+              name="content"
+              rows={4}
+              readOnly={true}
+            />
           </InputWrap>
           <TodoButtonWrap>
             <Button type="button">

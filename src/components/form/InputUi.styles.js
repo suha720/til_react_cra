@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 
+// styled 코드 자리
 export const InputGroup = styled.div`
   display: flex;
   align-items: center;

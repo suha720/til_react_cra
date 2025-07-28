@@ -25,10 +25,9 @@ function TodoEdit({ todoList, handleEditSubmit }) {
   const handleChange = e => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
-
   // onSubmit 함수 만들기
   const handleSubmit = e => {
-    e.preventDefault();
+    e.preventDefault(); // 새로고침 방지
     // 새로 작성된 내용을 todoList 를 업데이트 하도록 하자.
     handleEditSubmit({ ...data });
     navigate("/");
