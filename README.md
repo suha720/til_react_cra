@@ -1400,7 +1400,9 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: background 0.3s ease, color 0.3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
 .dark {
   background-color: #121212;
@@ -1675,7 +1677,6 @@ export default App;
 ```
 
 - Context API 마이그레이션
-
   - /src/contexts 폴더
   - EmotionContext.jsx 생성
 
@@ -1992,32 +1993,37 @@ export default App;
 
 ## 4. 종합예제
 
+- 리액트에는 리액트 전용 변수, 즉 state 가 2종류가 있음.
+- 컴포넌트에서만 생성 및 관리되는 useState 가 있음.
+- 리액트 전체 영역에서 생성 및 관리되는 context 가 있음.
+- 공통적으로 state 가 바뀌면 리랜더링이 일어난다.
+
 ### 4.1. contextAPI 를 다루는 constext 전용 API 가 있다.
 
-- 라이브러리도 꽤 많다
-- constext 는 다루기 위한 좋은 도구임
+- context 는 대표적으로 사용자정보, 테마, 장바구니 등에 활용함.
+- 라이브러리도 꽤 많다. (RTK - Redux Toolkit, Recoil, Zustands 등)
+- context 는 다루기 위한 좋은 도구로 useReducer 를 활용했었음.
 
 ### 4.2 useReaducer 란?
 
-- useState 에 비해서 다양하게 state 를 관리할 수 있음
-- use
+- useState 에 비해서 다양하게 state 를 관리할 수 있음.
+- useReucer 에서의 state 와 action, reducer 함수 에 대해서 반드시 이해하자.
 
 ### 4.3. 예제
 
-- context 를 모아둔 폴더 즉, src/contexts 포더 확인
+- context 를 모아둔 폴더 즉, src/contexts 폴더 확인
 - TodoContext.jsx
 
-```jsx
-// 1 todo 를 위한 context 생성
+````jsx
+// 1. Todo 를 위한 context 생성
 const { createContext } = require("react");
-// 1.1 todo 데이터를 위한 context
+
+// 1.1. Todo 데이터를 위한 context
 export const TodoStateContext = createContext(null);
-// 1.2. todo 데이터 업데이트를 위한 context
-export const TodoDispatchContext = createContext(null);
-```
+// 1.2. Todo 데이터 업데이트를 위한 context
+export const TodoDispatchContext = createContext(null);```
 
 - TodoProvider.jsx 생성
-
 ```jsx
 // 2. Provider 생성
 
@@ -2063,6 +2069,18 @@ export function TodoProvider({ children }) {
 ```
 
 - App.jsx
+```jsx
+import { TodoProvider } from "./contexts/TodoProvider";
+
+function App() {
+  return <TodoProvider>App</TodoProvider>;
+}
+
+export default App;
+```
 
 - /src/components/todo 폴더
-- TodoAdd.jsx  추가용 컴포넌트
+- TodoAdd.jsx 추가용 컴포넌트
+- TodoList.jsx 목록용 컴포넌트
+- TodoItem.jsx 하나의 Todo 컴포넌트
+````
