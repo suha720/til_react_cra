@@ -1,0 +1,6 @@
+// 1 todo 를 위한 context 생성
+const { createContext } = require("react");
+// 1.1 todo 데이터를 위한 context
+export const TodoStateContext = createContext(null);
+// 1.2. todo 데이터 업데이트를 위한 context
+export const TodoDispatchContext = createContext(null);

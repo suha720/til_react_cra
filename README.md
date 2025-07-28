@@ -1400,9 +1400,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition:
-    background 0.3s ease,
-    color 0.3s ease;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 .dark {
   background-color: #121212;
@@ -1677,6 +1675,7 @@ export default App;
 ```
 
 - Context API 마이그레이션
+
   - /src/contexts 폴더
   - EmotionContext.jsx 생성
 
@@ -1990,3 +1989,80 @@ function App() {
 
 export default App;
 ```
+
+## 4. 종합예제
+
+### 4.1. contextAPI 를 다루는 constext 전용 API 가 있다.
+
+- 라이브러리도 꽤 많다
+- constext 는 다루기 위한 좋은 도구임
+
+### 4.2 useReaducer 란?
+
+- useState 에 비해서 다양하게 state 를 관리할 수 있음
+- use
+
+### 4.3. 예제
+
+- context 를 모아둔 폴더 즉, src/contexts 포더 확인
+- TodoContext.jsx
+
+```jsx
+// 1 todo 를 위한 context 생성
+const { createContext } = require("react");
+// 1.1 todo 데이터를 위한 context
+export const TodoStateContext = createContext(null);
+// 1.2. todo 데이터 업데이트를 위한 context
+export const TodoDispatchContext = createContext(null);
+```
+
+- TodoProvider.jsx 생성
+
+```jsx
+// 2. Provider 생성
+
+import { useReducer } from "react";
+import { TodoDispatchContext, TodoStateContext } from "./TodoContext";
+
+// 2.1. 초기값 생성
+const initialTodoState = [];
+// 2.2. 리듀서 함수 생성
+function todoReducer(state, action) {
+  switch (action.type) {
+    case "add":
+      // action  = {type:"add", payload:"안녕하세요."}
+      return [
+        ...state,
+        { id: new Date(), text: action.payload, completed: false },
+      ];
+    case "toggle":
+      // action  = {type:"toggle", payload:아이디 }
+      return state.map(item =>
+        item.id === action.payload
+          ? { ...item, completed: !item.completed }
+          : item,
+      );
+    case "delete":
+      // action  = {type:"delete", payload:아이디 }
+      return state.filter(item => item.id !== action.payload);
+    default:
+      return state;
+  }
+}
+// 2.3. Provider 생성
+export function TodoProvider({ children }) {
+  const [todos, dispatch] = useReducer(todoReducer, initialTodoState);
+  return (
+    <TodoStateContext.Provider value={todos}>
+      <TodoDispatchContext.Provider value={dispatch}>
+        {children}
+      </TodoDispatchContext.Provider>
+    </TodoStateContext.Provider>
+  );
+}
+```
+
+- App.jsx
+
+- /src/components/todo 폴더
+- TodoAdd.jsx  추가용 컴포넌트
